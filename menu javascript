@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu do Restaurante</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .menu-container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .menu-item {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+        }
+        .menu-item h2 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+        .menu-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .menu-item span {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .category-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .category-buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background: #333;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .category-buttons button.active {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Menu do Restaurante</h1>
+    </header>
+    <div class="category-buttons">
+        <button onclick="filterMenu('all')">Todos</button>
+        <button onclick="filterMenu('prato1')">Prato 1</button>
+        <button onclick="filterMenu('prato2')">Prato 2</button>
+        <button onclick="filterMenu('prato3')">Prato 3</button>
+    </div>
+    <div class="menu-container" id="menu">
+        <div class="menu-item prato1">
+            <h2>Prato 1</h2>
+            <p>Descrição do prato 1.</p>
+            <span>R$ 29,90</span>
+        </div>
+        <div class="menu-item prato2">
+            <h2>Prato 2</h2>
+            <p>Descrição do prato 2.</p>
+            <span>R$ 34,90</span>
+        </div>
+        <div class="menu-item prato3">
+            <h2>Prato 3</h2>
+            <p>Descrição do prato 3.</p>
+            <span>R$ 39,90</span>
+        </div>
+    </div>
+
+    <script>
+        function filterMenu(category) {
+            const items = document.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.category-buttons button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.category-buttons button[onclick="filterMenu('${category}')"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
